@@ -8,7 +8,13 @@ import studentsData from "./assets/students.json";
 
 function App() {
   const [students, setStudents] = useState(studentsData);
-
+  const [fullName, setFullName] = useState();
+  const [image, setImage] = useState();
+  const [phone, setPhone] = useState();
+  const [email, setEmail] = useState();
+  const [program, setProgram] = useState("");
+  const [graduationYear, setGraduationYear] = useState(false);
+  const [graduated, setGraduated] = useState(2023);
 
   return (
     <div className="App pt-20">
@@ -20,29 +26,29 @@ function App() {
         <div>
           <label>
             Full Name
-            <input name="fullName" type="text" placeholder="Full Name" />
+            <input name="fullName" type="text" placeholder="Full Name" value={fullName} onChange={setFullName} />
           </label>
 
           <label>
             Profile Image
-            <input name="image" type="url" placeholder="Profile Image" />
+            <input name="image" type="url" placeholder="Profile Image" value={image} onChange={setImage} />
           </label>
 
           <label>
             Phone
-            <input name="phone" type="tel" placeholder="Phone" />
+            <input name="phone" type="tel" placeholder="Phone" value={phone} onChange={setPhone} />
           </label>
 
           <label>
             Email
-            <input name="email" type="email" placeholder="Email" />
+            <input name="email" type="email" placeholder="Email" value={email} onChange={setEmail} />
           </label>
         </div>
 
         <div>
           <label>
             Program
-            <select name="program">
+            <select name="program" value={program} onSelect={setProgram}>
               <option value="">-- None --</option>
               <option value="Web Dev">Web Dev</option>
               <option value="UXUI">UXUI</option>
@@ -53,9 +59,10 @@ function App() {
           <label>
             Graduation Year
             <input
-              name="graduationYear"
+              name={graduationYear}
               type="number"
               placeholder="Graduation Year"
+              onChange={setGraduationYear}
               minLength={4}
               maxLength={4}
               min={2023}
@@ -65,10 +72,10 @@ function App() {
 
           <label>
             Graduated
-            <input name="graduated" type="checkbox" />
+            <input name={graduated} type="checkbox" checked={setGraduated} />
           </label>
 
-          <button type="submit">Add Student</button>
+          <button type="submit" value={students} onSubmit={setStudents}>Add Student</button>
         </div>
 
       </form>
